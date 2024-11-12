@@ -80,7 +80,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', async (req, res) => {
   try {
     const posts = await Post.find(); // Отримуємо всі пости
-    res.render('index', { posts }); // Рендеримо шаблон 'index' з передачею постів
+    res.render('index', { posts, user: req.user  }); // Рендеримо шаблон 'index' з передачею постів
   } catch (err) {
     res.status(500).send("Failed to fetch posts");
   }
@@ -98,14 +98,14 @@ app.get('/post/:id', async (req, res) => {
 
 // Маршрут для створення нового поста
 app.get('/create', (req, res) => {
-  res.render('create');
+  res.render('create', {user: req.user});
 });
 
 // Маршрут для обробки форми створення поста
 app.post('/create', async (req, res) => {
   const { title, description, author } = req.body;
   try {
-    const newPost = new Post({ title, description, author });
+    const newPost = new Post({ title, description, author : req.user.username });
     await newPost.save();
     res.redirect('/');
   } catch (err) {

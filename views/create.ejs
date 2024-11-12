@@ -17,9 +17,17 @@
       <textarea id="description" name="description" required></textarea>
 
       <label for="author">Author:</label>
-      <input type="text" id="author" name="author" required>
+          <div class="auth-section">
+      <% if (user) { %>
+        <span class="username"><%= user.username %>!</span>
+            <button type="submit" class="btn">Create Post</button>
+      <% } else { %>
+        <a href="/register" class="btn">Register</a>
+        <a href="/login" class="btn">Login</a>
+      <% } %>
+    </div>
 
-      <button type="submit" class="btn">Create Post</button>
+
     </form>
   </div>
 </body>

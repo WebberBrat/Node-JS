@@ -166,3 +166,11 @@ a.edit-button {
 a.edit-button:hover {
   background-color: #6d4c41; /* Темніший кавовий колір при наведенні */
 }
+
+.auth-buttons {
+  margin-bottom: 20px;
+}
+
+.auth-buttons .btn {
+  margin-right: 10px;
+}

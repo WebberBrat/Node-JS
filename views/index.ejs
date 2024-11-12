@@ -9,6 +9,17 @@
 <body>
   <div class="container">
     <h1>All Posts</h1>
+
+    <!-- Conditionally display auth buttons or username -->
+    <div class="auth-section">
+      <% if (user) { %>
+        <span class="username">Welcome, <%= user.username %>!</span>
+      <% } else { %>
+        <a href="/register" class="btn">Register</a>
+        <a href="/login" class="btn">Login</a>
+      <% } %>
+    </div>
+
     <a href="/create" class="btn">Create Post</a>
     <div class="posts">
       <% posts.forEach(post => { %>
@@ -23,4 +34,3 @@
   </div>
 </body>
 </html>
-
