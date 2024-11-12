@@ -1,0 +1,168 @@
+/* Загальні стилі */
+body {
+  font-family: 'Georgia', serif;
+  background-color: #f5f0e1; /* Світлий кавовий фон */
+  color: #3e2723; /* Текст темного шоколаду */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Контейнер для форми та постів */
+.container {
+  width: 100%;
+  max-width: 800px;  /* Максимальна ширина */
+  padding: 20px;
+  background-color: #fff8e1; /* Світлий бежевий фон */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовки */
+h1 {
+  text-align: center;
+  color: #3e2723;
+  margin-bottom: 20px;
+}
+
+/* Стиль для списку постів */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: #faf3e0; /* Світле тло для кожного посту */
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 200px; /* Зменшуємо висоту поста */
+  overflow: hidden; /* Приховуємо зайве вміст */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+ul li h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #5d4037; /* Темно-коричневий для заголовків */
+}
+
+/* Показуємо автора в попередньому перегляді */
+ul li p.author {
+  font-size: 14px;
+  color: #6d4c41; /* Тон темнішого коричневого */
+  margin-top: 5px;
+}
+
+/* Опис прихований, не відображається на сторінці */
+ul li p.description {
+  display: none; /* Опис прихований */
+}
+
+/* Кнопка "Edit" в шоколадних тонах */
+a.edit-button {
+  background-color: #3e2723; /* Темно-шоколадний */
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px; /* Відступ від тексту */
+  align-self: center; /* Центрує кнопку */
+}
+
+a.edit-button:hover {
+  background-color: #2c1b1a; /* Темніший шоколадний колір */
+}
+
+/* Форми */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Поля вводу */
+input[type="text"], textarea {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+/* Спеціальні стилі для поля "Description" */
+textarea {
+  resize: none; /* Заборона на зміну розміру */
+  height: 150px; /* Фіксована висота */
+}
+
+/* Кнопка */
+button {
+  background-color: #8d6e63; /* Кавовий колір кнопки */
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6d4c41; /* Темніший кавовий колір при наведенні */
+}
+
+/* Посилання */
+a {
+  color: #8d6e63;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Кнопка "View" замість "Edit" */
+a.view-button {
+  background-color: #3e2723; /* Темно-шоколадний */
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px; /* Відступ від тексту */
+  align-self: center; /* Центрує кнопку */
+}
+
+a.view-button:hover {
+  background-color: #2c1b1a; /* Темніший шоколадний колір */
+}
+
+/* Кнопка редагування на сторінці перегляду */
+a.edit-button {
+  background-color: #8d6e63; /* Кавовий колір кнопки */
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+a.edit-button:hover {
+  background-color: #6d4c41; /* Темніший кавовий колір при наведенні */
+}
