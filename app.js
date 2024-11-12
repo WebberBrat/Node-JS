@@ -1,8 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
 const bodyParser = require('body-parser');
 const Post = require('./models/Post');  // Модель поста
+const User = require('./models/User');  // Модель користувача
 const app = express();
 const PORT = 3000;
 
@@ -17,6 +21,54 @@ mongoose.connect('mongodb://localhost:27017/posts', {
 // Налаштування EJS як шаблонного движка
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+
+
+// Тіло запитів
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Сесії для збереження інформації про користувача
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+
+
+// Ініціалізація passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Стратегія для passport (локальна стратегія)
+passport.use(new LocalStrategy(async (username, password, done) => {
+  try {
+    const user = await User.findOne({ username });
+    if (!user) return done(null, false, { message: 'Incorrect username.' });
+
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) return done(null, false, { message: 'Incorrect password.' });
+
+    return done(null, user);
+  } catch (err) {
+    return done(err);
+  }
+}));
+
+// Сесія користувача (після успішного входу)
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+// Десеріалізація користувача з сесії
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
+
 
 // Статичні файли (CSS, JS)
 app.use(express.static(path.join(__dirname, 'public')));
@@ -90,6 +142,42 @@ app.get('/delete/:id', async (req, res) => {
   } catch (err) {
     res.status(500).send("Error deleting post");
   }
+});
+
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+// Обробка форми входу
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
+
+// Маршрут для реєстрації
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
+// Обробка форми реєстрації
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const user = new User({ username, password });
+    await user.save();
+    res.redirect('/login');
+  } catch (err) {
+    res.status(500).send("Error registering user");
+  }
+});
+
+// Вихід з системи
+app.get('/logout', (req, res) => {
+  req.logout((err) => {
+    if (err) return next(err);
+    res.redirect('/');
+  });
 });
 
 // Стартуємо сервер
