@@ -1,4 +1,7 @@
 /* Загальні стилі */
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: 'Georgia', serif;
   background-color: #f5f0e1; /* Світлий кавовий фон */
@@ -91,7 +94,7 @@ form {
 }
 
 /* Поля вводу */
-input[type="text"], textarea {
+input[type="text"], textarea,  input[type="password"] {
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
