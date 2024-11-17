@@ -1,1 +1,1 @@
-To use project you have to download it on your computer, you have to have mongodb installed on your computer, and if I'm right, that's all
+Clone repo to your computer, go to project directory in terminal and write "npm ci" in terminal, you are ready to use project
