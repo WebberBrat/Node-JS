@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const DBUrl = 'mongodb+srv://vlmelykh:pRctsugVbF0E1NM3@vlmelykh.hjp1t.mongodb.net/ '
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -11,7 +12,7 @@ const app = express();
 const PORT = 3000;
 
 // Підключення до MongoDB
-mongoose.connect('mongodb://localhost:27017/posts', {
+mongoose.connect(DBUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

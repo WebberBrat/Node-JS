@@ -13,7 +13,7 @@ body {
 
 /* Контейнер для форми та постів */
 .container {
-  width: 100%;
+  width: 90%;
   max-width: 800px;  /* Максимальна ширина */
   padding: 20px;
   background-color: #fff8e1; /* Світлий бежевий фон */
@@ -96,7 +96,7 @@ input[type="text"], textarea {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 100%;
+  width: 95%;
 }
 
 /* Спеціальні стилі для поля "Description" */
@@ -160,6 +160,7 @@ a.edit-button {
   border-radius: 4px;
   text-decoration: none;
   display: inline-block;
+  margin-top: 20px;
   margin-top: 20px;
 }
 
