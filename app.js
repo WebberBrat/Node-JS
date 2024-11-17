@@ -152,8 +152,7 @@ app.get('/login', (req, res) => {
 // Обробка форми входу
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
+  failureRedirect: '/login'
 }));
 
 // Маршрут для реєстрації
