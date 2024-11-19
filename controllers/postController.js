@@ -59,3 +59,15 @@ exports.deletePost = async (req, res) => {
     res.status(500).send('Error deleting post');
   }
 };
+
+exports.getPostById = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id).populate('author'); // Populate author details
+    if (!post) {
+      return res.status(404).send('Post not found');
+    }
+    res.render('post', { post, user: req.user }); // Pass post and user to the template
+  } catch (err) {
+    res.status(500).send('Error retrieving post');
+  }
+};

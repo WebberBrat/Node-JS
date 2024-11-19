@@ -106,7 +106,7 @@ app.get('/create', (req, res) => {
 app.post('/create', async (req, res) => {
   const { title, description, author } = req.body;
   try {
-    const newPost = new Post({ title, description, author : req.user.username });
+    const newPost = new Post({ title, description, author : req.user });
     await newPost.save();
     res.redirect('/');
   } catch (err) {

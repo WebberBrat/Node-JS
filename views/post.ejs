@@ -9,9 +9,16 @@
 <body>
   <div class="container">
     <h1><%= post.title %></h1>
-    <p><strong>Author:</strong> <%= post.author %></p>
+    <p><strong>Author:</strong> <%= post.author.username %></p>
     <p><%= post.description %></p>
-    <a href="/" class="btn">Back to Posts</a>
+
+    <!-- Conditionally render Edit/Delete buttons -->
+    <% if (user && user._id.toString() === post.author._id.toString()) { %>
+      <a href="/edit/<%= post._id %>" class="btn">Edit</a>
+      <a href="/delete/<%= post._id %>" class="btn">Delete</a>
+    <% } %>
+
+    <a href="/posts" class="btn">Back to Posts</a>
   </div>
 </body>
 </html>

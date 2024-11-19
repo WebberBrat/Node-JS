@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 
-// Схема поста
 const postSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  author: { type: String, required: true }
+  title: String,
+  description: String,
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Reference to User model
 });
 
-// Модель для поста
-module.exports = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('Post', postSchema)
